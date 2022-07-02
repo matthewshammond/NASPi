@@ -122,10 +122,13 @@ ssid=Discovery
 wpa_passphrase=password
 country_code=US
 ```
-`sudo vim /etc/default/hostapd`
-`DAEMON_CONF="/etc/hostapd/hostapd.conf"`
-`sudo vim /etc/init.d/hostapd`
-`DAEMON_CONF=/etc/hostapd/hostapd.conf`
+
+```
+sudo vim /etc/default/hostapd
+DAEMON_CONF="/etc/hostapd/hostapd.conf"
+sudo vim /etc/init.d/hostapd
+DAEMON_CONF=/etc/hostapd/hostapd.conf
+```
 
 - Modify DNSMASQ
 `sudo vim /etc/dnsmasq.conf`
@@ -136,20 +139,22 @@ dhcp-range=10.13.71.10,10.13.71.20,12h # IP range and lease time
 ```
 
 - Modify SYSCTL
-`sudo vim /etc/sysctl.conf`
-`net.ipv4.ip_forward=1`
-`sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"`
+```
+sudo vim /etc/sysctl.conf
+net.ipv4.ip_forward=1
+sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
+```
 
 - Forward all traffic form wlan1 to wlan0
-`sudo iptables -t nat -A POSTROUTING -o wlan1 -j MASQUERADE`
+```sudo iptables -t nat -A POSTROUTING -o wlan1 -j MASQUERADE```
 
 - Save rules to be used on reboot
-`sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"`
+```sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"```
 
 - Edit RC.local to set iptables on reboot
-`sudo vim /etc/rc.local`
+```sudo vim /etc/rc.local```
 - Above `exit 0` add:
-`iptables-restore < /etc/iptables.ipv4.nat`
+```iptables-restore < /etc/iptables.ipv4.nat```
 
 ## Finalize Configuration
 ```
