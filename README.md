@@ -104,9 +104,9 @@ interface wlan0
 interface=wlan0
 driver=nl80211
 
-hw_mode=g
-channel=6
-ieee80211n=1
+hw_mode=a
+channel=36
+ieee80211n=0
 wmm_enabled=0
 macaddr_acl=0
 ignore_broadcast_ssid=0
@@ -116,11 +116,11 @@ wpa=2
 wpa_key_mgmt=WPA-PSK
 wpa_pairwise=TKIP
 rsn_pairwise=CCMP
+beacon_int=100
 
-# This is the name of the network
 ssid=Discovery
-# The network passphrase
 wpa_passphrase=password
+country_code=US
 ```
 `sudo vim /etc/default/hostapd`
 `DAEMON_CONF="/etc/hostapd/hostapd.conf"`
