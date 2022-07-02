@@ -21,7 +21,7 @@ echo "alias xoff='sudo /usr/local/bin/x-c1-softsd.sh'" >> ~/.bashrc
 sudo dpkg-reconfigure --priority=low unattended-upgrades
 ```
 ## Restart Pi
-`sudo reboot`
+```sudo reboot```
 
 # Clone respository
 - Clone repository to home directory
@@ -49,38 +49,54 @@ sudo apt install -y plexmediaserver
 
 ## Configure audio to work through HDMI
 - edit /boot/config.txt
-```sudo vim /boot/config.txt```
+```
+sudo vim /boot/config.txt
+```
 
 - change dtoverlay to read
-```vc4-fkms-v3d```
+```
+vc4-fkms-v3d
+```
 
 ## Install window display
 ### Install the X Window System (X11)
 - Install xserver-xorg 
-```sudo apt install -y --no-install-recommends xserver-xorg```
+```
+sudo apt install -y --no-install-recommends xserver-xorg
+```
 
 - Install xinit
-```sudo apt install -y --no-install-recommends xinit```
+```
+sudo apt install -y --no-install-recommends xinit
+```
 
 - Install x11-xserver-utils 
-```sudo apt install -y --no-install-recommends x11-xserver-utils```
+```
+sudo apt install -y --no-install-recommends x11-xserver-utils
+```
 
 ### Install Chromium and kiosk dependencies
 - Install chromium-browser
-```sudo apt install chromium-browser```
+```
+sudo apt install chromium-browser
+```
 
 - Install the kiosk dependencies
-```sudo apt install matchbox-window-manager xautomation unclutter```
+```
+sudo apt install matchbox-window-manager xautomation unclutter
+```
 
 ### Configure xinit to start on boot
 - Add following command to .bashrc
-```echo "xinit /home/pi/kiosk -- vt$(fgconsole)" >> ~/.bashrc```
-
-
+```
+echo "xinit /home/pi/kiosk -- vt$(fgconsole)" >> ~/.bashrc
+```
 
 # Setup RASAP to Create Travel Router
 - Install RASPAP
-```curl -sL https://install.raspap.com | bash```
+```
+curl -sL https://install.raspap.com | bash
+```
 
 ## Configure Network Settings
 - Stop network services
@@ -90,16 +106,22 @@ sudo systemctl stop dnsmasq
 ```
 
 - Modify DHCPCD
-```sudo vim /etc/dhcpcd.conf```
+```
+sudo vim /etc/dhcpcd.conf
+```
 ```
 interface wlan0
     static ip_address=10.13.71.1/24
     nohook wpa_supplicant
 ```
-```sudo systemctl restart dhcpcd```
+```
+sudo systemctl restart dhcpcd
+```
 
 - Modify HOSTAPD
-```sudo nano /etc/hostapd/hostapd.conf```
+```
+sudo nano /etc/hostapd/hostapd.conf
+```
 ```
 interface=wlan0
 driver=nl80211
@@ -131,7 +153,9 @@ DAEMON_CONF=/etc/hostapd/hostapd.conf
 ```
 
 - Modify DNSMASQ
-```sudo vim /etc/dnsmasq.conf```
+```
+sudo vim /etc/dnsmasq.conf
+```
 ```
 interface=wlan0       # Use interface wlan0
 server=1.1.1.1       # Use Cloudflare DNS
@@ -146,15 +170,23 @@ sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
 ```
 
 - Forward all traffic form wlan1 to wlan0
-```sudo iptables -t nat -A POSTROUTING -o wlan1 -j MASQUERADE```
+```
+sudo iptables -t nat -A POSTROUTING -o wlan1 -j MASQUERADE
+```
 
 - Save rules to be used on reboot
-```sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"```
+```
+sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
+```
 
 - Edit RC.local to set iptables on reboot
-```sudo vim /etc/rc.local```
+```
+sudo vim /etc/rc.local
+```
 - Above `exit 0` add:
-```iptables-restore < /etc/iptables.ipv4.nat```
+```
+iptables-restore < /etc/iptables.ipv4.nat
+```
 
 ## Finalize Configuration
 ```
@@ -165,7 +197,9 @@ sudo service dnsmasq start
 ```
 
 ## Reboot
-```sudo reboot```
+```
+sudo reboot
+```
 
 ## Defaults:
 ```
