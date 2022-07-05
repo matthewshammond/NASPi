@@ -89,7 +89,7 @@ sudo apt install matchbox-window-manager xautomation unclutter
 ### Configure xinit to start on boot
 - Add following command to .bashrc
 ```
-echo "xinit /home/pi/kiosk -- vt$(fgconsole)" >> ~/.bashrc
+echo "xinit /home/pi/plex -- vt$(fgconsole)" >> ~/.bashrc
 ```
 
 # Setup RASAP to Create Travel Router
