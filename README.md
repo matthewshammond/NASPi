@@ -1,3 +1,4 @@
+[![asciicast](demo.cast)](demo.cast)
 # Setup Pi and NASPi Hardware
 ## Update and Upgrade Pi
 ```
