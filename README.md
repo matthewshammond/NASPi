@@ -1,4 +1,4 @@
-[![asciicast](demo.cast)](demo.cast)
+![asciicast](https://github.com/matthewshammond/NASPi/blob/main/demo.cast)
 # Setup Pi and NASPi Hardware
 ## Update and Upgrade Pi
 ```
